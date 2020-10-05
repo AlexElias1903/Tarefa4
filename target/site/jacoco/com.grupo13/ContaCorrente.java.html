@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContaCorrente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ContaCorrente</a> &gt; <a href="index.source.html" class="el_package">com.grupo13</a> &gt; <span class="el_source">ContaCorrente.java</span></div><h1>ContaCorrente.java</h1><pre class="source lang-java linenums">package com.grupo13;
+public class ContaCorrente{
+    int numeroConta;
+    String nomeCorrentista;
+    double saldo;
+    String categoria;
+<span class="fc" id="L7">    public ContaCorrente(int numeroConta, String nomeCorrentista) {</span>
+<span class="fc" id="L8">        this.numeroConta = numeroConta;</span>
+<span class="fc" id="L9">        this.nomeCorrentista = nomeCorrentista;</span>
+<span class="fc" id="L10">        this.saldo = 0;</span>
+<span class="fc" id="L11">        this.categoria = &quot;Silver&quot;;</span>
+<span class="fc" id="L12">    }</span>
+    public int getNumeroConta() {
+<span class="fc" id="L14">        return this.numeroConta;</span>
+    }
+    public String getNomeCorrentista() {
+<span class="fc" id="L17">        return this.nomeCorrentista;</span>
+    }
+    public double getSaldo() {
+<span class="fc" id="L20">        return this.saldo;</span>
+    }
+    public String getCategoria() {
+<span class="fc" id="L23">        return this.categoria;</span>
+    }
+    public boolean deposito(double valor){
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if(valor&gt;0){</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            if(getCategoria()==&quot;Silver&quot;){</span>
+<span class="fc" id="L28">                saldo = saldo + valor;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">                if(saldo&gt;=50000){</span>
+<span class="fc" id="L30">                    categoria=&quot;Gold&quot;;</span>
+                }
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        }else if(getCategoria()==&quot;Gold&quot;){</span>
+<span class="fc" id="L33">                saldo = saldo + (valor+valor*0.01);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">                if(saldo&gt;=200000){</span>
+<span class="fc" id="L35">                    categoria=&quot;Platinum&quot;;</span>
+                }
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        }else if(getCategoria()==&quot;Platinum&quot;){</span>
+<span class="fc" id="L38">            saldo = saldo +(valor + valor*0.025);</span>
+        }   
+<span class="fc" id="L40">        return true;</span>
+        }
+            else{
+<span class="fc" id="L43">            return false;</span>
+        }
+    }
+    public boolean retirada(double valor){
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if(valor&gt;saldo){</span>
+<span class="fc" id="L48">            return false;</span>
+        }else{
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if(getCategoria()==&quot;Platinum&quot;){</span>
+<span class="fc" id="L51">                saldo = saldo - valor;</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">                if(saldo &lt; 100000){</span>
+<span class="fc" id="L53">                    categoria = &quot;Gold&quot;;</span>
+                }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            }else if(getCategoria()==&quot;Gold&quot;){</span>
+<span class="fc" id="L56">                saldo = saldo - valor;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">                if(saldo &lt; 25000){</span>
+<span class="fc" id="L58">                    categoria = &quot;Silver&quot;;</span>
+                }
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            }else if(getCategoria()==&quot;Silver&quot;){</span>
+<span class="fc" id="L61">                saldo = saldo - valor;</span>
+            }
+<span class="fc" id="L63">            return true;</span>
+        }
+    }
+  }
+  
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
